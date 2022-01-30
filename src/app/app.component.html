@@ -1,28 +1,34 @@
 Error:{{getError()}}
 <br/><br/>
-<div *ngIf="user">
-  <div>
-    <label for="username">Username: </label>
-    <input id="username" [(ngModel)]="user.username" placeholder="username">
-  </div>
-  <div>
-    <label for="password">Password: </label>
-    <input id="password" [(ngModel)]="user.password" placeholder="password">
-  </div>
-  <button class="addButton" (click)="login(user)">Show</button>
-</div><br/>
+<form *ngIf="user">
+  <mat-form-field appearance="standard">
+    <mat-label for="username">Username: </mat-label>
+    <input matInput id="username" [(ngModel)]="user.username" [ngModelOptions]="{ standalone: true }" placeholder="username">
+  </mat-form-field><br/>
 
-<label for="token">Token: </label>
-<div *ngIf="token">
-  <textarea id="token">{{token}}</textarea>
-</div><br/>
+  <mat-form-field appearance="standard">
+    <mat-label for="password">Password: </mat-label>
+    <input matInput id="password" [(ngModel)]="user.password" [ngModelOptions]="{ standalone: true }" placeholder="password">
+  </mat-form-field><br/>
+  <button mat-stroked-button color="primary" class="addButton" (click)="login(user)">Show</button>
+</form><br/>
 
-<div>
-  <label for="login">Login: </label>
-  <input id="login" [(ngModel)]="mytoken" placeholder="token">
-  <button class="addButton" (click)="profile(mytoken)">Get user</button>
-</div><br/>
 
+<label  for="token">Token: </label>
+    <div *ngIf="token">
+      <textarea  id="token">{{token}}</textarea>
+    </div><br/>
+
+
+
+
+<form>
+  <mat-form-field>
+    <mat-label for="login">Login: </mat-label>
+    <input matInput id="login" [(ngModel)]="mytoken" [ngModelOptions]="{ standalone: true }" placeholder="token">
+  </mat-form-field><br/>
+  <button mat-stroked-button color="primary" class="addButton" (click)="profile(mytoken)">Get user</button>
+</form><br/>
 
 <div>
   Id: <div *ngIf="iuser"> {{iuser.userId}}</div><br/>
