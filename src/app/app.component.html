@@ -1,3 +1,5 @@
+Error:{{getError()}}
+<br/><br/>
 <div *ngIf="user">
   <div>
     <label for="username">Username: </label>
@@ -8,18 +10,26 @@
     <input id="password" [(ngModel)]="user.password" placeholder="password">
   </div>
   <button class="addButton" (click)="login(user)">Show</button>
+</div><br/>
+
+<label for="token">Token: </label>
+<div *ngIf="token">
+  <textarea id="token">{{token}}</textarea>
+</div><br/>
+
+<div>
+  <label for="login">Login: </label>
+  <input id="login" [(ngModel)]="mytoken" placeholder="token">
+  <button class="addButton" (click)="profile(mytoken)">Get user</button>
+</div><br/>
+
+
+<div>
+  Id: <div *ngIf="iuser"> {{iuser.userId}}</div><br/>
+  Username: <div *ngIf="iuser"> {{iuser.username}}</div>
 </div>
 
-<!--<div>
-  <div>
-    <label for="token">Username: </label>
-    <input id="token" [(ngModel)]="token" placeholder="username">
-  </div>
-  <button class="addButton" (click)="user(token)">Get user</button>
-</div>-->
 
-
-{{token}}
 
 
 

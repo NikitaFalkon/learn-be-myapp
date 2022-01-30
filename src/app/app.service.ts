@@ -11,21 +11,33 @@ import {of} from "rxjs";
   providedIn: 'root'
 })
 export class AppService {
-  error: string ="";
+  error: string ="No errors";
    login(data: {username: string; password: string}): Observable<Token> {
+     this.error = "No errors";
      return this.http
        .post<Token>(`http://localhost:3000/auth/login`, data).pipe(
          catchError(this.handleError<Token>("Error auth"))
        )
    }
 
-  private handleError<Token>(operation = 'operation', result?: Token) {
-    return (error: any): Observable<Token> => {
+  profile(token: string): Observable<IUser> {
+    this.error = "No errors";
+    return this.http.get<IUser>(`http://localhost:3000/profile`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }).pipe(
+      catchError(this.handleError<IUser>("Error profile"))
+    )
+  }
+
+  private handleError<T>(operation = 'operation', result?: T) {
+    return (error: any): Observable<T> => {
       console.error(error);
       console.log(operation);
-      error = operation;
+      this.error = operation;
 
-      return of(result as Token);
+      return of(result as T);
     }
   }
 
