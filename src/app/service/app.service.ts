@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import {IUser} from "./user/iuser";
+import {IUser} from "../user/iuser";
 import {HttpClient} from "@angular/common/http";
 import { Observable } from 'rxjs';
-import {Token} from "./user/token";
+import {Token} from "../user/token";
 import {catchError, tap} from "rxjs/operators";
 import {of} from "rxjs";
 

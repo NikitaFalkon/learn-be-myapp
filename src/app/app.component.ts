@@ -1,9 +1,6 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {IUser} from "./user/iuser";
-import {AppService} from "./app.service";
-import { Observable } from 'rxjs';
-import {catchError} from "rxjs/operators";
-import {Token} from "./user/token";
+import {AppService} from "./service/app.service";
 
 
 @Component({
@@ -32,10 +29,7 @@ export class AppComponent {
     )
   }
 
-
-
   constructor(private appService: AppService){ }
-
 
   getError() {
     return this.appService.error;

@@ -1,1 +1,9 @@
-
+.main {
+  margin: auto;
+  width: 12rem;
+  padding: 1rem;
+  border-radius: 10px;
+  display: block;
+  background-color: #edebf7;
+;
+}
