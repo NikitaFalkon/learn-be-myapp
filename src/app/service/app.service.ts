@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import {IUser} from "../user/iuser";
 import {HttpClient} from "@angular/common/http";
-import { Observable } from 'rxjs';
+import { Observable, of, interval } from 'rxjs';
 import {Token} from "../user/token";
-import {catchError, tap} from "rxjs/operators";
-import {of} from "rxjs";
+import {catchError, delay, switchMap, tap} from "rxjs/operators";
+;
 
 
 @Injectable({
@@ -12,6 +12,8 @@ import {of} from "rxjs";
 })
 export class AppService {
   error: string ="";
+  token : string | undefined;
+
    login(data: {username: string; password: string}): Observable<Token> {
      this.error = "";
      return this.http
@@ -21,7 +23,6 @@ export class AppService {
    }
 
   profile(token: string | undefined): Observable<IUser> {
-    // this.error = "";
     return this.http.get<IUser>(`http://localhost:3000/profile`, {
       headers: {
         Authorization: `Bearer ${token}`,

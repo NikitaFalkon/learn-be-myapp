@@ -1,6 +1,8 @@
 import {Component} from '@angular/core';
 import {IUser} from "./user/iuser";
 import {AppService} from "./service/app.service";
+import {mergeMap, switchMap, take} from "rxjs/operators";
+import {interval, of} from "rxjs";
 
 
 @Component({
@@ -17,8 +19,20 @@ export class AppComponent {
   loginAndProfile(data: {username: string; password: string}) {
     this.appService.login(data).subscribe(
       x => {this.token = x?.access_token;
-      this.profile(x?.access_token);
-      console.log(this.token)}
+      this.profile(x?.access_token);}
+    );
+    console.log(this.token);
+  }
+
+  loginAndProfileNewVersion(data: {username: string; password: string}) {
+    const switched = of(this.login(data)).pipe(switchMap((ev) => interval(100)));
+    switched.pipe(take(1)).subscribe(x => this.profile(this.token));
+  }
+
+  login(data: {username: string; password: string}) {
+    this.appService.login(data).subscribe(
+      x => {this.token = x?.access_token;
+        console.log(this.token)}
     );
   }
 

@@ -14,7 +14,7 @@
         <mat-label for="password">Password: </mat-label>
         <input matInput id="password" [(ngModel)]="user.password" [ngModelOptions]="{ standalone: true }" placeholder="password">
       </mat-form-field><br/>
-      <button mat-stroked-button color="primary" class="addButton" (click)="loginAndProfile(user)">Show</button>
+      <button mat-stroked-button color="primary" class="addButton" (click)="loginAndProfileNewVersion(user)">Show</button>
     </form><br/>
 
     <div *ngIf="iuser?.username">
