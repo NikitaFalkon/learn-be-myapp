@@ -10,23 +10,23 @@ import {AppService} from "./service/app.service";
 })
 export class AppComponent {
   title = 'my-app';
-  token: string | undefined;
-  mytoken: string = "";
+  token : string | undefined;
   iuser: IUser | undefined;
   user: IUser = new IUser('', '');
 
-  login(data: {username: string; password: string}) {
+  loginAndProfile(data: {username: string; password: string}) {
     this.appService.login(data).subscribe(
       x => {this.token = x?.access_token;
-      console.log(x,this.token)}
+      this.profile(x?.access_token);
+      console.log(this.token)}
     );
   }
 
-  profile(token: string) {
+  profile(token: string | undefined) {
     this.appService.profile(token).subscribe(
       x => {this.iuser = x;
-      console.log(x)}
-    )
+        console.log(x)}
+    );
   }
 
   constructor(private appService: AppService){ }

@@ -1,6 +1,9 @@
   <div class="main">
-    Error:{{getError()}}
-    <br/>
+    <div *ngIf="getError().length > 0">
+      Error:{{getError()}}
+      <br/>
+    </div>
+
     <form *ngIf="user">
       <mat-form-field appearance="standard">
         <mat-label for="username">Username: </mat-label>
@@ -11,23 +14,10 @@
         <mat-label for="password">Password: </mat-label>
         <input matInput id="password" [(ngModel)]="user.password" [ngModelOptions]="{ standalone: true }" placeholder="password">
       </mat-form-field><br/>
-      <button mat-stroked-button color="primary" class="addButton" (click)="login(user)">Show</button>
+      <button mat-stroked-button color="primary" class="addButton" (click)="loginAndProfile(user)">Show</button>
     </form><br/>
 
-    <label  for="token">Token: </label>
-    <div *ngIf="token">
-      <textarea  id="token">{{token}}</textarea>
-    </div><br/>
-
-    <form>
-      <mat-form-field>
-        <mat-label for="login">Login: </mat-label>
-        <input matInput id="login" [(ngModel)]="mytoken" [ngModelOptions]="{ standalone: true }" placeholder="token">
-      </mat-form-field><br/>
-      <button mat-stroked-button color="primary" class="addButton" (click)="profile(mytoken)">Get user</button>
-    </form><br/>
-
-    <div>
+    <div *ngIf="iuser?.username">
       Id: <div *ngIf="iuser"> {{iuser.userId}}</div><br/>
       Username: <div *ngIf="iuser"> {{iuser.username}}</div>
     </div>

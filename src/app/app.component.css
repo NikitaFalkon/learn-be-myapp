@@ -1,6 +1,7 @@
 .main {
   margin: auto;
   width: 12rem;
+  min-height: 12rem;
   padding: 1rem;
   border-radius: 10px;
   display: block;

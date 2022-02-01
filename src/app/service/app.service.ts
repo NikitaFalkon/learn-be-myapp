@@ -11,23 +11,23 @@ import {of} from "rxjs";
   providedIn: 'root'
 })
 export class AppService {
-  error: string ="No errors";
+  error: string ="";
    login(data: {username: string; password: string}): Observable<Token> {
-     this.error = "No errors";
+     this.error = "";
      return this.http
        .post<Token>(`http://localhost:3000/auth/login`, data).pipe(
-         catchError(this.handleError<Token>("Error auth"))
+         catchError(this.handleError<Token>("Invalid profile"))
        )
    }
 
-  profile(token: string): Observable<IUser> {
-    this.error = "No errors";
+  profile(token: string | undefined): Observable<IUser> {
+    // this.error = "";
     return this.http.get<IUser>(`http://localhost:3000/profile`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
     }).pipe(
-      catchError(this.handleError<IUser>("Error profile"))
+      catchError(this.handleError<IUser>("Invalid profile"))
     )
   }
 
