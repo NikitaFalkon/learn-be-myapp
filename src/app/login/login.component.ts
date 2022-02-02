@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {TokenService} from "../service/token.service";
 import {AppService} from "../service/app.service";
@@ -10,17 +10,17 @@ import {IUser} from "../user/iuser";
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  token : string | undefined;
+  token: string | undefined;
   user: IUser = new IUser('', '');
 
   constructor(private tokenService: TokenService,
               private route: ActivatedRoute,
               private router: Router,
-              private appService: AppService) { }
+              private appService: AppService) {
+  }
 
   ngOnInit() {
-    this.route.queryParams.
-    subscribe(params => {
+    this.route.queryParams.subscribe(params => {
       this.tokenService.setToken(params['token']);
       console.log("My token " + this.tokenService.getToken());
     });
@@ -35,15 +35,17 @@ export class LoginComponent implements OnInit {
   }
 
   redirect() {
-    if(this.getError().length > 0) return;
+    if (this.getError().length > 0) return;
 
     this.appService.navigate(['/profile'], this.token);
   }
 
-  login(data: {username: string; password: string}) {
+  login(data: { username: string; password: string }) {
     return this.appService.login(data).subscribe(
-      x => {this.token = x?.access_token;
-        this.redirect()}
+      x => {
+        this.token = x?.access_token;
+        this.redirect()
+      }
     );
   }
 }

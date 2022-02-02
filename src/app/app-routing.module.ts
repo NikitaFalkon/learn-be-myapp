@@ -4,14 +4,15 @@ import {LoginComponent} from "./login/login.component";
 
 
 const routes: Routes = [
-  { path:'login', component: LoginComponent },
-  { path:'profile', component: LoginComponent },
-  { path: 'startbar', redirectTo: '', pathMatch: 'full' },
-  {path: '**', redirectTo: '',  pathMatch: 'full'}
+  {path: 'login', component: LoginComponent},
+  {path: 'profile', component: LoginComponent},
+  {path: 'startbar', redirectTo: '', pathMatch: 'full'},
+  {path: '**', redirectTo: '', pathMatch: 'full'}
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+}
