@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {TokenService} from "../service/token.service";
+import {AppService} from "../service/app.service";
+import {IUser} from "../user/iuser";
 
 @Component({
   selector: 'app-login',
@@ -8,23 +10,31 @@ import {TokenService} from "../service/token.service";
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+  token : string | undefined;
+  user: IUser = new IUser('', '');
 
-  constructor(private route: ActivatedRoute, private tokenService: TokenService, private router: Router) { }
+  constructor(private tokenService: TokenService,
+              private router: Router,
+              private appService: AppService) { }
 
-  ngOnInit() {
-    this.route.queryParams.
-    subscribe(params => {
-      this.tokenService.setToken(params['token']);
-      console.log("My token " + this.tokenService.getToken());
-    });
+  ngOnInit(): void {
+        throw new Error('Method not implemented.');
+    }
+
+  getError() {
+    return this.appService.error;
   }
 
-  back() {
-    this.tokenService.setToken('');
-    this.router.navigate(['/startbar']);
+  redirect() {
+    if(this.getError().length > 0) return;
+
+    this.appService.navigate(['/profile'], this.token);
   }
 
-  getToken() {
-    return this.tokenService.getToken();
+  login(data: {username: string; password: string}) {
+    return this.appService.login(data).subscribe(
+      x => {this.token = x?.access_token;
+        this.redirect()}
+    );
   }
 }

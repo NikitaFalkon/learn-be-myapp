@@ -1,10 +1,10 @@
-import { Injectable } from '@angular/core';
-import {IUser} from "../user/iuser";
+import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import { Observable, of, interval } from 'rxjs';
+import {Observable, of} from 'rxjs';
 import {Token} from "../user/token";
-import {catchError, delay, switchMap, tap} from "rxjs/operators";
+import {catchError} from "rxjs/operators";
 import {Router} from "@angular/router";
+
 ;
 
 
@@ -36,6 +36,6 @@ export class AppService {
   constructor(private http: HttpClient, private router: Router) { }
 
   navigate(strings: string[], token: string | undefined) {
-    this.router.navigate(['/login'], {queryParams: {token: token}});
+    this.router.navigate(strings, {queryParams: {token: token}});
   }
 }

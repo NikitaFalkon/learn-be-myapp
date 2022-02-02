@@ -1,4 +1,4 @@
-  <div class="main" *ngIf="!getToken()">
+<!--  <div class="main" *ngIf="!getToken()">
     <div *ngIf="getError().length > 0">
       Error:{{getError()}}
       <br/>
@@ -17,7 +17,13 @@
       <button mat-stroked-button color="primary" class="addButton" (click)="login(user)">Show</button>
     </form><br/>
   </div>
-  <router-outlet></router-outlet>
+  <router-outlet></router-outlet>-->
+
+<div routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">
+  <a routerLink="">Main</a>
+  <a routerLink="/login">Login</a>
+</div>
+<router-outlet></router-outlet>
 
 
 
