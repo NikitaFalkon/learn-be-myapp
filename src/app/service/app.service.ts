@@ -4,10 +4,6 @@ import {Observable, of} from 'rxjs';
 import {Token} from "../user/token";
 import {catchError} from "rxjs/operators";
 import {Router} from "@angular/router";
-
-;
-
-
 @Injectable({
   providedIn: 'root'
 })

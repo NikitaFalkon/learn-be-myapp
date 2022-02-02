@@ -11,13 +11,11 @@ import {MatInputModule} from "@angular/material/input";
 import {MatButtonModule} from "@angular/material/button";
 import { LoginComponent } from './login/login.component';
 import {RouterModule} from "@angular/router";
-import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,
-    ProfileComponent
+    LoginComponent
   ],
   imports: [
     MatFormFieldModule,

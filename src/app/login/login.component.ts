@@ -14,12 +14,21 @@ export class LoginComponent implements OnInit {
   user: IUser = new IUser('', '');
 
   constructor(private tokenService: TokenService,
+              private route: ActivatedRoute,
               private router: Router,
               private appService: AppService) { }
 
-  ngOnInit(): void {
-        throw new Error('Method not implemented.');
-    }
+  ngOnInit() {
+    this.route.queryParams.
+    subscribe(params => {
+      this.tokenService.setToken(params['token']);
+      console.log("My token " + this.tokenService.getToken());
+    });
+  }
+
+  getToken() {
+    return this.tokenService.getToken();
+  }
 
   getError() {
     return this.appService.error;

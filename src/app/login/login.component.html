@@ -1,4 +1,4 @@
-<div class="main">
+<div class="main" *ngIf="!getToken()">
   <div *ngIf="getError().length > 0">
     Error:{{getError()}}
     <br/>
@@ -16,4 +16,8 @@
     </mat-form-field><br/>
     <button mat-stroked-button color="primary" class="addButton" (click)="login(user)">Show</button>
   </form><br/>
+</div>
+<div *ngIf="getToken()">
+  <p>login works!</p>
+  {{getToken()}}<br/>
 </div>

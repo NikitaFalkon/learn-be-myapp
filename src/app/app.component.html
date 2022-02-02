@@ -1,24 +1,3 @@
-<!--  <div class="main" *ngIf="!getToken()">
-    <div *ngIf="getError().length > 0">
-      Error:{{getError()}}
-      <br/>
-    </div>
-
-    <form *ngIf="user">
-      <mat-form-field appearance="standard">
-        <mat-label for="username">Username: </mat-label>
-        <input matInput id="username" [(ngModel)]="user.username" [ngModelOptions]="{ standalone: true }" placeholder="username">
-      </mat-form-field><br/>
-
-      <mat-form-field appearance="standard">
-        <mat-label for="password">Password: </mat-label>
-        <input matInput id="password" [(ngModel)]="user.password" [ngModelOptions]="{ standalone: true }" placeholder="password">
-      </mat-form-field><br/>
-      <button mat-stroked-button color="primary" class="addButton" (click)="login(user)">Show</button>
-    </form><br/>
-  </div>
-  <router-outlet></router-outlet>-->
-
 <div routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">
   <a routerLink="">Main</a>
   <a routerLink="/login">Login</a>

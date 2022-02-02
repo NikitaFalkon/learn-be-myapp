@@ -1,5 +1,4 @@
 import {Component} from '@angular/core';
-import {IUser} from "./user/iuser";
 import {AppService} from "./service/app.service";
 import {TokenService} from "./service/token.service";
 
@@ -12,8 +11,5 @@ import {TokenService} from "./service/token.service";
 export class AppComponent {
   title = 'my-app';
 
-
   constructor(private appService: AppService, private tokenService: TokenService){}
-
-
 }
