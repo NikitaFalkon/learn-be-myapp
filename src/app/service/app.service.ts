@@ -4,6 +4,7 @@ import {HttpClient} from "@angular/common/http";
 import { Observable, of, interval } from 'rxjs';
 import {Token} from "../user/token";
 import {catchError, delay, switchMap, tap} from "rxjs/operators";
+import {Router} from "@angular/router";
 ;
 
 
@@ -22,16 +23,6 @@ export class AppService {
        )
    }
 
-  profile(token: string | undefined): Observable<IUser> {
-    return this.http.get<IUser>(`http://localhost:3000/profile`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    }).pipe(
-      catchError(this.handleError<IUser>("Invalid profile"))
-    )
-  }
-
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
       console.error(error);
@@ -42,5 +33,9 @@ export class AppService {
     }
   }
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private router: Router) { }
+
+  navigate(strings: string[], token: string | undefined) {
+    this.router.navigate(['/login'], {queryParams: {token: token}});
+  }
 }
